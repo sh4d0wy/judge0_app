@@ -36,26 +36,25 @@ app.post("/submit",async (req,res)=>{
             "expected_output":convertToBase64(test.expected_output)
         }
     });
+
     try{
         const result = await axios.post(BASE_URL,{
             submissions
         },{
             headers
         });
-        const token = result.data;
-        const stringOfAllTokens = token.map((token:any)=>token.token).join(",");
-        let getStdOut;
-        if(token){
-            getStdOut = await sendGetRequest(stringOfAllTokens,headers);
-        }
+        const tokens = result.data;
+        const stringOfAllTokens = tokens.map((token:any)=>token.token).join(",");
+        const getStdOut = await sendGetRequest(stringOfAllTokens,headers) ;
+        
         res.status(200).json({
             result:getStdOut
-        })
+        });
     }catch(e){
         console.log(e);
-        res.json({
+        res.status(500).json({
             success:false,
-            message:"Something went"
+            message:"Something went wrong"
         });
     }
 });
