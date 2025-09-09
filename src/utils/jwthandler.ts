@@ -4,8 +4,8 @@ import { config } from "dotenv";
 
 config();
 
-export const generateToken = (id:mongoose.Types.ObjectId)=>{
-    return jwt.sign({id},process.env.JWT_SECRET!,{expiresIn:"10d"});
+export const generateToken = (id:mongoose.Types.ObjectId,role:string)=>{
+    return jwt.sign({id,role},process.env.JWT_SECRET!,{expiresIn:"10d"});
 }
 
 export const verifyToken = (token:string)=>{

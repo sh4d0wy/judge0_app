@@ -15,6 +15,12 @@ const userSchema = new mongoose.Schema({
             type:String,
             enum:["admin","user"],
             default:"user"
+        },
+        completedQuestions:{
+            type:Array<{
+                questionId:mongoose.Schema.Types.ObjectId
+            }>,
+            default:[]
         }
 },{timestamps:true})
 
