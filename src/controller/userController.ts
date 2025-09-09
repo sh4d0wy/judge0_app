@@ -54,7 +54,6 @@ export const submitQuestion = async(req:Request,res:Response)=>{
     
     try{
         const question = await Question.findById(new mongoose.Types.ObjectId(questionId)) as questionType;
-        console.log(question);
         if(!question){
             return res.status(404).json({message:"Question not found"});
         }
