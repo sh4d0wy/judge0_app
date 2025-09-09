@@ -1,9 +1,6 @@
 import express from "express";
-import axios from "axios";
 import mongoose from "mongoose";
 import { config } from "dotenv";
-import { convertToBase64, sendGetRequest } from "./utils/judge0helpers.js";
-import { codeSnippetSchema } from "./types/index.js";
 import userRoutes from "./routes/userRoutes.js";
 import questionRoutes from "./routes/questionRoute.js";
 
@@ -23,13 +20,6 @@ mongoose.connect(MONGODB_URI)
 const app = express();
 
 app.use(express.json());
-
-
-
-
-app.post("/submit",async (req,res)=>{
-    
-});
 
 app.use("/api/user",userRoutes);
 app.use("/api/question",questionRoutes);
