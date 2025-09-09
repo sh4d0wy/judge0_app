@@ -1,8 +1,5 @@
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
-import { config } from "dotenv";
-
-config();
 
 export const generateToken = (id:mongoose.Types.ObjectId,role:string)=>{
     return jwt.sign({id,role},process.env.JWT_SECRET!,{expiresIn:"10d"});

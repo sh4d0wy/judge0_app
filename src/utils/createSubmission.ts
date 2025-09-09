@@ -1,18 +1,15 @@
 import axios from "axios";
 import { convertToBase64, sendGetRequest } from "./judge0helpers.js";
 import { questionType } from "../types/index.js";
-import { config } from "dotenv";
-
-config();
 
 const BASE_URL="https://judge0-ce.p.rapidapi.com/submissions/batch?base64_encoded=true";
 
-const headers = {
-    "Content-Type": "application/json",
-    "X-RapidAPI-Key": process.env.RAPID_API_KEY,
-    "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com"
-}
 export const createSubmission = async (question:questionType,source_code:string,language_id:number)=>{
+        const headers = {
+            "Content-Type": "application/json",
+            "X-RapidAPI-Key": process.env.RAPID_API_KEY,
+            "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com"
+        };
         const {testcases} = question;
 
         const submissions = testcases.map((test:any)=>{
